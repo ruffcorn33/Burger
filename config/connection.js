@@ -1,5 +1,4 @@
 var mysql = require("mysql");
-require("dotenv").config();
 
 const mysql_pwd = process.env.MYSQL_PASSWORD;
 
