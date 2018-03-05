@@ -42,7 +42,7 @@ Open a browser and navigate to `localhost:3000`.  This will open the Burger appl
 
 ## **What's going on here?**
 
-This app hides several technolgies and a lot of complexity behind its simple UI.  Like what?  Well, the main file `server.js` uses four Node.js modules, [express](https://www.npmjs.com/package/express), [body-parser](https://www.npmjs.com/package/express), [express-handlebars](https://www.npmjs.com/package/express-handlebars) and [dotenv](https://www.npmjs.com/package/dotenv).  **Express** is a web framework that we use to create a web server. **Body-parser** is middleware that handles response data.  **Express-handlebars** is a view/template engine that lets us insert dynamic HTML into a static HTML template.  **Dotenv** loads the user's MySQL password into an environment variable.  This lets us package the app without exposing a real password.
+This app hides several technolgies and a lot of complexity behind its simple UI.  Like what?  Well, the main file `server.js` uses four Node.js modules, [express](https://www.npmjs.com/package/express), [body-parser](https://www.npmjs.com/package/express), [express-handlebars](https://www.npmjs.com/package/express-handlebars) and [dotenv](https://www.npmjs.com/package/dotenv).  **Express** is a web framework that we use to create a web server. **Body-parser** is middleware that handles response data.  **Express-handlebars** is a view/template engine that lets us insert dynamic HTML into a static HTML template.  **Dotenv** loads the user's MySQL password into an environment variable.  This lets us package the app without exposing a developer password.
 
 The `connection.js` file uses the [mysql](https://www.npmjs.com/package/mysql) module to connect to a MySQL database.
 
