@@ -1,33 +1,55 @@
 var connection = require("./connection.js");
 
 var orm = {
-  selectWhere: function(tableInput, colToSearch, valOfCol) {
-    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
-    connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
-      if (err) throw err;
-      console.log(result);
-    });
-  },
-  selectAndOrder: function(whatToSelect, table, orderCol) {
-    var queryString = "SELECT ?? FROM ?? ORDER BY ?? DESC";
-    console.log(queryString);
-    connection.query(queryString, [whatToSelect, table, orderCol], function(err, result) {
-      if (err) throw err;
-      console.log(result);
-    });
-  },
-  findWhoHasMost: function(tableOneCol, tableTwoForeignKey, tableOne, tableTwo) {
-    var queryString =
-      "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";
 
-    connection.query(
-      queryString,
-      [tableOneCol, tableOneCol, tableOne, tableTwo, tableTwo, tableTwoForeignKey, tableOne, tableOneCol],
-      function(err, result) {
-        if (err) throw err;
-        console.log(result);
+  // Helper function to convert object key/value pairs to SQL syntax
+  function objToSql(ob) {
+    var arr = [];
+    for (var key in ob) {
+      var value = ob[key];
+      if (Object.hasOwnProperty.call(ob, key)) {
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+        arr.push(key + "=" + value);
       }
-    );
+    }
+    return arr.toString();
+  },
+
+  // SELECT All
+  selectAll: function(tableInput, cb) {
+    var queryString = "SELECT * FROM ??";
+    connection.query(queryString, tableInput, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      cb(result);
+    });
+  },
+
+  // INSERT ONE
+  selectAll: function(tableInput, keyName, cb) {
+    var queryString = "INSERT INTO " + tableInput + " SET " + keyName;
+
+    connection.query(queryString, function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      cb(result);
+    });
+  },
+
+  // UPDATE ONE
+  updateOne: function(tableInput, objColVals, cb) {
+    var queryString = "UPDATE " + tableInput;
+    queryString += " SET ";
+    queryString += objToSql(objColVals);
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
   }
 };
 
