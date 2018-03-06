@@ -1,21 +1,22 @@
 var connection = require("./connection.js");
 
-var orm = {
 
-  // Helper function to convert object key/value pairs to SQL syntax
-  function objToSql(ob) {
-    var arr = [];
-    for (var key in ob) {
-      var value = ob[key];
-      if (Object.hasOwnProperty.call(ob, key)) {
-        if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
-        }
-        arr.push(key + "=" + value);
+// Helper function to convert object key/value pairs to SQL syntax
+function objToSql(ob) {
+  var arr = [];
+  for (var key in ob) {
+    var value = ob[key];
+    if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
       }
+      arr.push(key + "=" + value);
     }
-    return arr.toString();
-  },
+  }
+  return arr.toString();
+}
+
+var orm = {
 
   // SELECT All
   selectAll: function(tableInput, cb) {
@@ -29,8 +30,7 @@ var orm = {
 
   // INSERT ONE
   selectAll: function(tableInput, keyName, cb) {
-    var queryString = "INSERT INTO " + tableInput + " SET " + keyName;
-
+    var queryString = "INSERT INTO " + tableInput + " SET " + objToSql(keyName);
     connection.query(queryString, function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -51,6 +51,7 @@ var orm = {
       cb(result);
     });
   }
+
 };
 
 module.exports = orm;
