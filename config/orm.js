@@ -20,8 +20,11 @@ function printQuestionMarks(num) {
 function objToSql(ob) {
   var arr = [];
   for (var key in ob) {
-    // var value = ob[key];
+    var value = ob[key];
     if (Object.hasOwnProperty.call(ob, key)) {
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
       arr.push(key + "=" + ob[key]);
     }
   }
@@ -54,11 +57,12 @@ var orm = {
     queryString += ") VALUES (";
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
-    // console.log("insertOne queryString: " + queryString);
+    console.log("insertOne queryString: " + queryString);
     connection.query(queryString, vals, function(err, result) {
       if (err) {
         throw err;
       }
+      console.log("InsertOne result: " + result);
       cb(result);
     });
   },
@@ -77,6 +81,7 @@ var orm = {
       if (err) {
         throw err;
       }
+      console.log("updateOne result: " + result);
       cb(result);
     });
   }

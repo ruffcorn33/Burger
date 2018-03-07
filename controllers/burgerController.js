@@ -31,11 +31,12 @@ router.get("/", function(req, res) {
 // new database insert (new burger)
 router.post("/", function(req, res) {
   burger.create([
-    "name"
+    "burger_name", "devoured"
   ], [
-    req.body.name
+    req.body.burger_name, req.body.devoured
   ], function() {
-    res.redirect("/");
+    res.json({ id: result.insertId });
+    // res.redirect("/");
   });
 });
 

@@ -1,8 +1,8 @@
 <li class='my-2'>
-	{{this.name}}
-
-	<button class="change-devoured btn btn-sm" data-id="{{id}}" data-newdevoured="{{devoured}}">
-		{{#unless devoured}}EAT ME!{{/unless}}
-	</button>
-
+	<div class="burger p-2 border border-secondary">
+		{{burger_name}}
+		<button class="change-devour btn btn-sm btn-secondary" data-id="{{id}}" data-newdevour="{{devoured}}">
+			{{#unless devoured}}EAT ME!{{/unless}}
+		</button>
+	</div>
 </li>
