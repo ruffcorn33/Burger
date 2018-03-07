@@ -20,7 +20,7 @@ app.use(express.static('public'))
 // BODY-PARSER MIDDLEWARE
 // Sets up the Express app to handle data parsing
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,5 +40,5 @@ app.use(routes);
 // Start the server to begin listening
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+  console.log("Express server listening on PORT " + PORT);
 });
