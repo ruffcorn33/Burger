@@ -1,5 +1,9 @@
-# **Burger**
-A practice app using Node, Express, Handlebars and MySQL
+# **Eat the Burger**
+
+A practice app using Node, Express, Handlebars and MySQL.  Add a burger in the text box and click Submit.  The new burger will be added to the left-hand column.  Click the Eat Me button of any burger and it will be moved to the right-hand (eaten) column.
+
+![Demo](public/assets/images/demo.gif)
+
 
 ## **INSTALLATION INSTRUCTIONS**
 
@@ -8,14 +12,14 @@ Users must have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-
 
 ### **Installing the app**
 
-1) From git bash, Terminal or Command Prompt, clone this repository to a directory on your computer.  
+1) From git bash, Terminal or Command Prompt, clone this repository to a directory on your computer.  <br>
   ```git clone https://github.com/ruffcorn33/Burger.git```
-2) Change directory to the Burger directory.
+2) Change directory to the Burger directory.<br>
   ```cd Burger```
-3) Initialize the app with a package.json file.
+3) Initialize the app with a package.json file.<br>
   ```npm init```  
   Follow the command line instructions.  You can just accept all of the defaults.
-4) Install the app.
+4) Install the app.<br>
   ```npm install```
   This will create a node_modules folder and install all of the dependent modules.
 
@@ -24,7 +28,7 @@ Users will need to add a file name '.env' to the project folder.
 
   ```MYSQL_PASSWORD=?????????```
 
-  replacing the question marks with your MySQL password.
+  Replace the question marks with your MySQL password.
 
 ### **Setting up the MySQL database**
 
@@ -32,13 +36,14 @@ Users will need to add a file name '.env' to the project folder.
 
 2) Click the new connection box to open it.  From the File menu, select 'Open SQL Script'.  Navigate to your project folder/db and select schema.sql.  Run the code to create the database and the `burgers` table.
 
-3) Click File/Open SQL Script again, navigate to the project/db folder and select seeds.sql.  Run the code in seeds.sql to populate the table with data.
+3) Click File/Open SQL Script again, navigate to the project/db folder and select seeds.sql.  Run the code in seeds.sql to populate the table with seed data.
 
 ### **Running the Burger app**
 
-Enter 'node server' from the command line.  You should see the message 'App listening on PORT 3000'.
+Enter 'node server' from the command line.  You should see the message <br>`Express server listening on PORT 3000`<br>
+`MySQL DB: connected as id 13`.
 
-Open a browser and navigate to `localhost:3000`.  This will open the Burger application page.  You will see a column of uneaten burgers on the left and a column of eaten burgers on the right.  Clicking the 'Devour it' button beside a burger will move it from the left column to the right column.  Below the two columns of burger is a text box where you can enter the name of a new burger.  New burgers appear in the left column... and you can probably guess the rest.
+Open a browser and navigate to `localhost:3000`.  This will open the Burger application page.  You will see a column of uneaten burgers on the left and a column of eaten burgers on the right.  Clicking the 'EAT ME!' button beside a burger will move it from the left column to the right column.  Below the two columns of burger is a text box where you can enter the name of a new burger.  New burgers appear in the left column... and you can probably guess the rest.
 
 ## **What's going on here?**
 
@@ -47,6 +52,8 @@ This app hides several technolgies and a lot of complexity behind its simple UI.
 The `connection.js` file uses the [mysql](https://www.npmjs.com/package/mysql) module to connect to a MySQL database.
 
 This project also makes use of a custom designed **Object Relational Mapping tool** (ORM) to abstract away the SQL code for queries to the database.  
+
+This application uses the Model-View-Controller architectural pattern.
 
 
 
