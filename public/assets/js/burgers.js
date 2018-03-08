@@ -1,11 +1,13 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
+  // eat a burger
   $(".change-devour").on("click", function(event) {
+    console.log("Eat a burger button clicked");
     var id = $(this).data("id");
     var newDevour = $(this).data("newdevour");
 
     var newDevourState = {
-      devoured: newDevour
+      devoured: 1
     };
 
     // Send the PUT request.
@@ -14,20 +16,22 @@ $(function() {
       data: newDevourState
     }).then(
       function() {
-        console.log("changed devour to", newDevour);
+        console.log("changed devoured to", newDevour);
         // Reload the page to get the updated list
         location.reload();
       }
     );
   });
 
+  // add a burger
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
+    console.log("Add a burger button clicked");
 
     var newBurger = {
-      burger_name: $("#bn").val().trim(),
-      devoured: $("[name=devoured]:checked").val().trim()
+      burger_name: $("#new_burger").val().trim(),
+      devoured: 0
     };
 
     // Send the POST request.
@@ -42,4 +46,5 @@ $(function() {
       }
     );
   });
+
 });
