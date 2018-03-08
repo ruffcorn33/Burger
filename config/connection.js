@@ -11,13 +11,19 @@ const mysql_pwd = process.env.MYSQL_PASSWORD;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // setup My SQL connection
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var connection = mysql.createConnection({
-  port: 3306,
-  host: "localhost",
-  user: "root",
-  password: mysql_pwd,
-  database: "burgers_db"
-});
+if (process.env.JAWSDB_URL){
+  // for Heroku 
+  connection - mysql.createConnection(process.env.JAWSDB_URL)
+
+}else {
+  var connection = mysql.createConnection({
+    port: 3306,
+    host: "localhost",
+    user: "root",
+    password: mysql_pwd,
+    database: "burgers_db"
+  });
+};
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // connect
