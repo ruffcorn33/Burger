@@ -13,7 +13,7 @@ const mysql_pwd = process.env.MYSQL_PASSWORD;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if (process.env.JAWSDB_URL){
   // for Heroku 
-  connection - mysql.createConnection(process.env.JAWSDB_URL)
+  connection = mysql.createConnection(process.env.JAWSDB_URL)
 
 }else {
   var connection = mysql.createConnection({
